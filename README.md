@@ -1,4 +1,5 @@
 # Media Type Parser
+[![Build Status](https://travis-ci.org/Isabek/media-type-parser.svg)](https://travis-ci.org/Isabek/es-response-parser)
 
 ## Description
 The parser determines a type of a file, byte array or input stream. 

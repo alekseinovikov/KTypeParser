@@ -65,15 +65,6 @@ internal class MediaTypeParserTest {
         Assertions.assertEquals(MediaType.JPEG, mediaType)
     }
 
-    @Test
-    fun parse_noneEmptyFile_octetStream() {
-        val noneFile = getFileFromResources("none.none")
-
-        val mediaType = MediaTypeParser.parse(noneFile)
-
-        Assertions.assertEquals(MediaType.OCTET_STREAM, mediaType)
-    }
-
     private fun getFileFromResources(path: String): File = File(javaClass.classLoader.getResource(path).file)
 
 }
