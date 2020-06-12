@@ -1,4 +1,4 @@
-package me.freedom4live.type.parser
+package org.ktypeparser
 
 import com.google.common.net.MediaType
 import org.junit.jupiter.api.Assertions
