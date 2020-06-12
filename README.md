@@ -23,4 +23,4 @@ The approaches:
 
 ## Authors
 
-* Alexey Novikov (freedom4live) - https://github.com/freedom4live
+* Alexey Novikov (freedom4live) - https://github.com/alekseinovikov
