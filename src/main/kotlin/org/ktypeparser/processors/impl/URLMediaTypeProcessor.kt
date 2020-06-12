@@ -1,7 +1,7 @@
-package me.freedom4live.type.parser.processors.impl
+package org.ktypeparser.processors.impl
 
-import me.freedom4live.type.parser.processors.AbstractMediaTypeProcessor
-import me.freedom4live.type.parser.processors.MediaTypeProcessor
+import org.ktypeparser.processors.AbstractMediaTypeProcessor
+import org.ktypeparser.processors.MediaTypeProcessor
 import java.io.File
 import java.net.URLConnection
 

@@ -1,4 +1,4 @@
-package me.freedom4live.type.parser.processors
+package org.ktypeparser.processors
 
 import java.io.File
 

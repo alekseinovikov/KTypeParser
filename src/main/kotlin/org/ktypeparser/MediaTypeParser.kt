@@ -1,7 +1,7 @@
-package me.freedom4live.type.parser
+package org.ktypeparser
 
 import com.google.common.net.MediaType
-import me.freedom4live.type.parser.processors.initProcessorChain
+import org.ktypeparser.processors.initProcessorChain
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.InputStream

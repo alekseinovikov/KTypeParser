@@ -1,6 +1,6 @@
-package me.freedom4live.type.parser.processors
+package org.ktypeparser.processors
 
-import me.freedom4live.type.parser.processors.impl.*
+import org.ktypeparser.processors.impl.*
 import java.io.File
 
 interface MediaTypeProcessor {
