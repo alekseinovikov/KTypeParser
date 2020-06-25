@@ -1,6 +1,6 @@
-# Media Type Parser
+# KTypeParser
 [![Build Status](https://travis-ci.org/Isabek/media-type-parser.svg)](https://travis-ci.org/Isabek/es-response-parser)
-![BUILD (Ubuntu 20.04)](https://github.com/alekseinovikov/media-type-parser/workflows/BUILD%20(Ubuntu%2020.04)/badge.svg?branch=master)
+![BUILD (Ubuntu 20.04)](https://github.com/alekseinovikov/KTypeParser/workflows/BUILD%20(Ubuntu%2020.04)/badge.svg?branch=master)
 
 ## Description
 The parser determines a type of a file, byte array or input stream. 
@@ -31,7 +31,3 @@ The approaches:
 * MimetypesFileTypeMap
 * jMimeMagic
 * Apache Tika
-
-## Authors
-
-* Aleksei Novikov - https://github.com/alekseinovikov
