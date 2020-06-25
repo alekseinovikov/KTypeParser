@@ -1,8 +1,8 @@
 package org.ktypeparser
 
-import com.google.common.net.MediaType
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import org.ktypeparser.type.MediaType
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
