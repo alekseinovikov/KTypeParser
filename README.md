@@ -1,6 +1,5 @@
 # Media Type Parser
 [![Build Status](https://travis-ci.org/Isabek/media-type-parser.svg)](https://travis-ci.org/Isabek/es-response-parser)
-
 ![BUILD (Ubuntu 20.04)](https://github.com/alekseinovikov/media-type-parser/workflows/BUILD%20(Ubuntu%2020.04)/badge.svg?branch=master)
 
 ## Description
@@ -16,7 +15,7 @@ You can build the project using Gradle.
 * org.ktypeparser.MediaTypeParser.parse(bytes: ByteArray): MediaType?
 * org.ktypeparser.MediaTypeParser.parse(file: File): MediaType?
 
-MediaType - is a com.google.common.net.MediaType from Guava (will be changed in upcoming releases)
+MediaType - is an enum with media types that can be determined by MIME Type
 
 Extension functions and coroutines are in upcoming changes plans
 
