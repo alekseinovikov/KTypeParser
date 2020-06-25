@@ -1,7 +1,8 @@
 package org.ktypeparser
 
-import com.google.common.net.MediaType
 import org.ktypeparser.processors.initProcessorChain
+import org.ktypeparser.type.MediaType
+import org.ktypeparser.type.parseMediaType
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.InputStream
@@ -29,11 +30,8 @@ object MediaTypeParser {
     }
 
     fun parse(file: File): MediaType? {
-        return processorChain.parseMediaType(file)?.toMediaType()
+        return processorChain.parseMediaType(file)?.parseMediaType()
     }
-
-
-    private fun String.toMediaType(): MediaType = MediaType.parse(this)
 
     private fun deleteTempFile(file: File) = file.delete()
 

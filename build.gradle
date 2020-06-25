@@ -16,7 +16,6 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     compile("javax.activation:activation:1.1.1")
-    compile("com.google.guava:guava:29.0-jre")
     compile("net.sf.jmimemagic:jmimemagic:0.1.5")
     compile("org.apache.tika:tika-core:1.24.1")
     
