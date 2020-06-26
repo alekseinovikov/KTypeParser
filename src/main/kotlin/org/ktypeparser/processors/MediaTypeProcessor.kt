@@ -42,6 +42,11 @@ internal object MediaTypeProcessor {
         val outputTempFilePath = "$tempDirectory/$randomName"
         Files.copy(it, Paths.get(outputTempFilePath))
 
+        try {
+            it.reset() //trying to reset input stream, if supported
+        } catch (_: Exception) {
+            //ignore reset
+        }
         File(outputTempFilePath)
     }
 
