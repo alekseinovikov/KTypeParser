@@ -1,8 +1,7 @@
 package org.ktypeparser
 
-import org.ktypeparser.processors.initProcessorChain
+import org.ktypeparser.processors.MediaTypeProcessor
 import org.ktypeparser.type.MediaType
-import org.ktypeparser.type.parseMediaType
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.InputStream
@@ -11,8 +10,6 @@ import java.nio.file.Paths
 import java.util.*
 
 object MediaTypeParser {
-
-    private val processorChain = initProcessorChain()
 
 
     fun parse(inputStream: InputStream): MediaType? {
@@ -30,7 +27,7 @@ object MediaTypeParser {
     }
 
     fun parse(file: File): MediaType? {
-        return processorChain.parseMediaType(file)?.parseMediaType()
+        return MediaTypeProcessor.parseMediaType(file)
     }
 
     private fun deleteTempFile(file: File) = file.delete()
