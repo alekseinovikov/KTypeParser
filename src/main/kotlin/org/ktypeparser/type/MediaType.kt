@@ -9,6 +9,8 @@ private const val VIDEO_TYPE = "video"
 private const val WILDCARD = "*"
 
 enum class MediaType(val type: String, val subType: String) {
+    EMPTY("application","x-empty"),
+
     ANY_TYPE(WILDCARD, WILDCARD),
     ANY_TEXT_TYPE(TEXT_TYPE, WILDCARD),
     ANY_IMAGE_TYPE(IMAGE_TYPE, WILDCARD),
