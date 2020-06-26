@@ -7,60 +7,60 @@ import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 
-internal class MediaTypeParserTest {
+internal class MediaTypeDetectorTest {
 
     @Test
-    fun parse_pdfFile_rightType() {
+    fun detect_pdfFile_rightType() {
         val pdfFile = getFileFromResources("pdf.pdf")
 
-        val mediaType = MediaTypeParser.parse(pdfFile)
+        val mediaType = detect(pdfFile)
 
         Assertions.assertEquals(MediaType.PDF, mediaType)
     }
 
     @Test
-    fun parse_pdfFileByteArray_rightType() {
+    fun detect_pdfFileByteArray_rightType() {
         val pdfFile = getFileFromResources("pdf.pdf")
         val bytes = Files.readAllBytes(Paths.get(pdfFile.toURI()))
 
-        val mediaType = MediaTypeParser.parse(bytes)
+        val mediaType = detect(bytes)
 
         Assertions.assertEquals(MediaType.PDF, mediaType)
     }
 
     @Test
-    fun parse_pdfFileInputStream_rightType() {
+    fun detect_pdfFileInputStream_rightType() {
         val pdfFile = getFileFromResources("pdf.pdf")
 
-        val mediaType = MediaTypeParser.parse(pdfFile.inputStream())
+        val mediaType = detect(pdfFile.inputStream())
 
         Assertions.assertEquals(MediaType.PDF, mediaType)
     }
 
     @Test
-    fun parse_jpgFile_rightType() {
+    fun detect_jpgFile_rightType() {
         val jpgFile = getFileFromResources("jpg.jpg")
 
-        val mediaType = MediaTypeParser.parse(jpgFile)
+        val mediaType = detect(jpgFile)
 
         Assertions.assertEquals(MediaType.JPEG, mediaType)
     }
 
     @Test
-    fun parse_jpgFileByteArray_rightType() {
+    fun detect_jpgFileByteArray_rightType() {
         val jpgFile = getFileFromResources("jpg.jpg")
         val bytes = Files.readAllBytes(Paths.get(jpgFile.toURI()))
 
-        val mediaType = MediaTypeParser.parse(bytes)
+        val mediaType = detect(bytes)
 
         Assertions.assertEquals(MediaType.JPEG, mediaType)
     }
 
     @Test
-    fun parse_jpgFileInputStream_rightType() {
+    fun detect_jpgFileInputStream_rightType() {
         val jpgFile = getFileFromResources("jpg.jpg")
 
-        val mediaType = MediaTypeParser.parse(jpgFile.inputStream())
+        val mediaType = detect(jpgFile.inputStream())
 
         Assertions.assertEquals(MediaType.JPEG, mediaType)
     }

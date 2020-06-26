@@ -10,9 +10,15 @@ You can build the project using Gradle.
 
 ## Usage
 
-* org.ktypeparser.MediaTypeParser.parse(inputStream: InputStream): MediaType?
-* org.ktypeparser.MediaTypeParser.parse(bytes: ByteArray): MediaType?
-* org.ktypeparser.MediaTypeParser.parse(file: File): MediaType?
+Functions:
+* detect(inputStream: InputStream): MediaType?
+* detect(bytes: ByteArray): MediaType?
+* detect(file: File): MediaType?
+
+Extension functions:
+* File.detectMediaType(): MediaType?
+* ByteArray.detectMediaType(): MediaType?
+* InputStream.detectMediaType(): MediaType?
 
 MediaType - is an enum with media types that can be determined by MIME Type
 
