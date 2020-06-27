@@ -15,10 +15,18 @@ Functions:
 * detect(bytes: ByteArray): MediaType?
 * detect(file: File): MediaType?
 
+* suspend fun detectAsync(inputStream: InputStream): Deferred<MediaType?>
+* suspend fun detectAsync(bytes: ByteArray): Deferred<MediaType?>
+* suspend fun detectAsync(file: File): Deferred<MediaType?>
+
 Extension functions:
 * File.detectMediaType(): MediaType?
 * ByteArray.detectMediaType(): MediaType?
 * InputStream.detectMediaType(): MediaType?
+
+* suspend File.detectMediaTypeAsync(): Deferred<MediaType?>
+* suspend ByteArray.detectMediaTypeAsync(): Deferred<MediaType?>
+* suspend InputStream.detectMediaTypeAsync(): Deferred<MediaType?>
 
 MediaType - is an enum with media types that can be determined by MIME Type
 
