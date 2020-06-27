@@ -65,6 +65,62 @@ internal class MediaTypeDetectorTest {
         Assertions.assertEquals(MediaType.JPEG, mediaType)
     }
 
-    private fun getFileFromResources(path: String): File = File(javaClass.classLoader.getResource(path).file)
+    @Test
+    fun extension_detect_pdqFile_rightType() {
+        val pdfFile = getFileFromResources("pdf.pdf")
+
+        val mediaType = pdfFile.detectMediaType()
+
+        Assertions.assertEquals(MediaType.PDF, mediaType)
+    }
+
+    @Test
+    fun extension_detect_pdfFileByteArray_rightType() {
+        val pdfFile = getFileFromResources("pdf.pdf")
+        val bytes = Files.readAllBytes(Paths.get(pdfFile.toURI()))
+
+        val mediaType = bytes.detectMediaType()
+
+        Assertions.assertEquals(MediaType.PDF, mediaType)
+    }
+
+    @Test
+    fun extension_detect_pdfFileInputStream_rightType() {
+        val pdfFile = getFileFromResources("pdf.pdf")
+
+        val mediaType = pdfFile.inputStream().detectMediaType()
+
+        Assertions.assertEquals(MediaType.PDF, mediaType)
+    }
+
+    @Test
+    fun extension_detect_jpgFile_rightType() {
+        val jpgFile = getFileFromResources("jpg.jpg")
+
+        val mediaType = jpgFile.detectMediaType()
+
+        Assertions.assertEquals(MediaType.JPEG, mediaType)
+    }
+
+    @Test
+    fun extension_detect_jpgFileByteArray_rightType() {
+        val jpgFile = getFileFromResources("jpg.jpg")
+        val bytes = Files.readAllBytes(Paths.get(jpgFile.toURI()))
+
+        val mediaType = bytes.detectMediaType()
+
+        Assertions.assertEquals(MediaType.JPEG, mediaType)
+    }
+
+    @Test
+    fun extension_detect_jpgFileInputStream_rightType() {
+        val jpgFile = getFileFromResources("jpg.jpg")
+
+        val mediaType = jpgFile.inputStream().detectMediaType()
+
+        Assertions.assertEquals(MediaType.JPEG, mediaType)
+    }
+
+    private fun getFileFromResources(path: String): File = File(javaClass.classLoader.getResource(path)!!.file)
 
 }
