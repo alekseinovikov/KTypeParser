@@ -1,5 +1,9 @@
 package org.ktypeparser.processors
 
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.InputStream
@@ -9,9 +13,15 @@ import java.util.*
 
 internal fun deleteTempFile(file: File) = file.delete()
 
-internal fun createTempFile(bytes: ByteArray): File {
-    return createTempFile(ByteArrayInputStream(bytes))
-}
+internal suspend fun deleteTempFileAsync(file: File) = GlobalScope.launch { file.delete() }
+
+internal suspend fun createTempFileAsync(bytes: ByteArray): Deferred<File> =
+    GlobalScope.async { createTempFile(bytes) }
+
+internal suspend fun createTempFileAsync(inputStream: InputStream): Deferred<File> =
+    GlobalScope.async { createTempFile(inputStream) }
+
+internal fun createTempFile(bytes: ByteArray): File = createTempFile(ByteArrayInputStream(bytes))
 
 internal fun createTempFile(inputStream: InputStream): File = inputStream.use {
     val outputTempFilePath = "$tempDirectory/$randomName"

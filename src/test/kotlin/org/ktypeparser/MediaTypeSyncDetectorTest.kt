@@ -7,7 +7,7 @@ import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 
-internal class MediaTypeDetectorTest {
+internal class MediaTypeSyncDetectorTest {
 
     @Test
     fun detect_pdfFile_rightType() {
