@@ -3,6 +3,7 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'java'
+    id 'com.jfrog.bintray' version '1.8.4'
 }
 
 group 'org.ktypeparser'
@@ -42,24 +43,57 @@ jar {
     }
 }
 
+def pomConfig = {
+    licenses {
+        license {
+            name "GNU GENERAL PUBLIC LICENSE, Version 3.0"
+            url "https://www.gnu.org/licenses/gpl-3.0.en.html"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "alekseinovikov"
+            name "Aleksei Novikov"
+            email "novikov.aleksei.92@gmail.com"
+        }
+    }
+
+    scm {
+        url "https://github.com/alekseinovikov/KTypeParser"
+    }
+}
+
+
 publishing {
     publications {
-        maven(MavenPublication) {
+        mavenPublication(MavenPublication) {
             groupId = 'org.ktypeparser'
             artifactId = 'ktype-parser'
+
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'KTypeParser parses MIME types')
+                root.appendNode('name', 'KTypeParser')
+                root.appendNode('url', 'https://github.com/alekseinovikov/KTypeParser')
+                root.children().last() + pomConfig
+            }
 
             from components.java
         }
     }
+}
 
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/alekseinovikov/KTypeParser")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
+bintray {
+    user = System.getenv("BINTRAY_USER") ?: System.properties['bintrayUser']
+    key = System.getenv("BINTRAY_KEY") ?: System.properties['bintrayKey']
+    configurations = ['archives']
+    publications = ['mavenPublication']
+
+    pkg {
+        repo = "KTypeParser"
+        name = project.name
+        licenses = ['GPL-3.0']
+        vcsUrl = 'https://github.com/alekseinovikov/KTypeParser.git'
     }
 }
