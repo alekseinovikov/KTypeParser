@@ -37,12 +37,6 @@ test {
     }
 }
 
-jar {
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-}
-
 def pomConfig = {
     licenses {
         license {
