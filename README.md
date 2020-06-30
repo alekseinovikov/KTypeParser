@@ -10,6 +10,27 @@ You can build the project using Gradle.
 
 ## Usage
 
+Add dependency into your Gradle project:
+```groovy
+repositories {
+    ...
+
+    maven {
+        url  "https://dl.bintray.com/alekseinovikov/KTypeParser"
+    }
+
+    ...
+}
+
+dependencies {
+    ...
+
+    implementation 'org.ktypeparser:ktype-parser:2.0'
+    
+    ...
+}
+```
+
 Functions:
 * detect(inputStream: InputStream): MediaType?
 * detect(bytes: ByteArray): MediaType?
@@ -31,6 +52,25 @@ Extension functions:
 MediaType - is an enum with media types that can be determined by MIME Type
 
 Extension functions and coroutines are in upcoming changes plans
+
+Code example:
+
+```kotlin
+    val stream: InputStream = ByteArray::javaClass.javaClass.classLoader.getResourceAsStream("download.png")
+    val streamMediaType = stream.detectMediaType()
+
+    println(streamMediaType)
+
+    val bytes: ByteArray = ByteArray::javaClass.javaClass.classLoader.getResourceAsStream("download.png").readAllBytes()
+    val bytesMediaType = bytes.detectMediaType()
+
+    println(bytesMediaType)
+
+    val file: File = File(ByteArray::javaClass.javaClass.classLoader.getResource("download.png").toURI())
+    val fileMediaType = file.detectMediaType()
+
+    println(fileMediaType)
+```
 
 ## Details
 Using: https://github.com/overview/mime-types to detect mime-types as strings
