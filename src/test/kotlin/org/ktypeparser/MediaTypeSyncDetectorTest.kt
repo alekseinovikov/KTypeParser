@@ -3,6 +3,7 @@ package org.ktypeparser
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.ktypeparser.type.MediaType
+import java.io.ByteArrayInputStream
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -66,6 +67,24 @@ internal class MediaTypeSyncDetectorTest {
     }
 
     @Test
+    fun detect_emptyFileByteArray_null() {
+        val bytes = ByteArray(0)
+
+        val mediaType = detect(bytes)
+
+        Assertions.assertNull(mediaType)
+    }
+
+    @Test
+    fun detect_emptyFileInputStream_null() {
+        val inputStream = ByteArrayInputStream(ByteArray(0))
+
+        val mediaType = detect(inputStream)
+
+        Assertions.assertNull(mediaType)
+    }
+
+    @Test
     fun extension_detect_pdqFile_rightType() {
         val pdfFile = getFileFromResources("pdf.pdf")
 
@@ -119,6 +138,24 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = jpgFile.inputStream().detectMediaType()
 
         Assertions.assertEquals(MediaType.JPEG, mediaType)
+    }
+
+    @Test
+    fun extension_detect_emptyFileByteArray_null() {
+        val bytes = ByteArray(0)
+
+        val mediaType = bytes.detectMediaType()
+
+        Assertions.assertNull(mediaType)
+    }
+
+    @Test
+    fun extension_detect_emptyFileInputStream_null() {
+        val inputStream = ByteArrayInputStream(ByteArray(0))
+
+        val mediaType = inputStream.detectMediaType()
+
+        Assertions.assertNull(mediaType)
     }
 
     private fun getFileFromResources(path: String): File = File(javaClass.classLoader.getResource(path)!!.file)
