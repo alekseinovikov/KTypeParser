@@ -25,7 +25,7 @@ repositories {
 dependencies {
     ...
 
-    implementation 'org.ktypeparser:ktype-parser:2.0'
+    implementation 'org.ktypeparser:ktype-parser:2.1'
     
     ...
 }
@@ -51,6 +51,15 @@ Extension functions:
 
 MediaType - is an enum with media types that can be determined by MIME Type
 
+MediaType has field superType that is MediaSuperType. It represents short classification of the MediaTypes like:
+
+* OTHER
+* TEXT
+* IMAGE
+* AUDIO
+* VIDEO
+* APPLICATION
+
 Extension functions and coroutines are in upcoming changes plans
 
 Code example:
@@ -59,17 +68,20 @@ Code example:
     val stream: InputStream = ByteArray::javaClass.javaClass.classLoader.getResourceAsStream("download.png")
     val streamMediaType = stream.detectMediaType()
 
-    println(streamMediaType)
+    println(streamMediaType) //PNG
+    println(streamMediaType.superType) //IMAGE
 
     val bytes: ByteArray = ByteArray::javaClass.javaClass.classLoader.getResourceAsStream("download.png").readAllBytes()
     val bytesMediaType = bytes.detectMediaType()
 
-    println(bytesMediaType)
+    println(bytesMediaType) //PNG
+    println(bytesMediaType.superType) //IMAGE
 
     val file: File = File(ByteArray::javaClass.javaClass.classLoader.getResource("download.png").toURI())
     val fileMediaType = file.detectMediaType()
 
-    println(fileMediaType)
+    println(fileMediaType) //PNG
+    println(fileMediaType.superType) //IMAGE
 ```
 
 ## Details
