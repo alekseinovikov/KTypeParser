@@ -24,8 +24,8 @@ internal object MediaTypeSyncDetector {
         }
     }
 
-    fun detect(file: File): MediaType? {
-        return parseMediaType(file)
+    fun detect(file: File?): MediaType? {
+        return file?.let { parseMediaType(it) }
     }
 
     private fun parseMediaType(file: File): MediaType? = mimeTypeDetector.detectMimeType(file)?.parseMediaType()

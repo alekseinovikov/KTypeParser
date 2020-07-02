@@ -19,13 +19,17 @@ internal object MediaTypeAsyncDetector {
 
     suspend fun detectAsync(bytes: ByteArray): Deferred<MediaType?> {
         val file = createTempFileAsync(bytes)
-        return file.await().toPath().detectAsync()
+        return file.await()?.toPath().detectAsync()
     }
 
     suspend fun detectAsync(inputStream: InputStream): Deferred<MediaType?> =
-        createTempFileAsync(inputStream).await().toPath().detectAsync()
+        createTempFileAsync(inputStream).await()?.toPath().detectAsync()
 
-    private suspend fun Path.detectAsync() =
-        GlobalScope.async { mimeTypeDetector.detectMimeTypeAsync(this@detectAsync).await().parseMediaType() }
+    private suspend fun Path?.detectAsync() =
+        GlobalScope.async {
+            this@detectAsync?.let {
+                mimeTypeDetector.detectMimeTypeAsync(it).await().parseMediaType()
+            }
+        }
 
 }

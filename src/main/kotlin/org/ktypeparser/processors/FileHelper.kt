@@ -11,19 +11,20 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.*
 
-internal fun deleteTempFile(file: File) = file.delete()
+internal fun deleteTempFile(file: File?) = file?.delete()
 
 internal suspend fun deleteTempFileAsync(file: File) = GlobalScope.launch { file.delete() }
 
-internal suspend fun createTempFileAsync(bytes: ByteArray): Deferred<File> =
+internal suspend fun createTempFileAsync(bytes: ByteArray): Deferred<File?> =
     GlobalScope.async { createTempFile(bytes) }
 
-internal suspend fun createTempFileAsync(inputStream: InputStream): Deferred<File> =
+internal suspend fun createTempFileAsync(inputStream: InputStream): Deferred<File?> =
     GlobalScope.async { createTempFile(inputStream) }
 
-internal fun createTempFile(bytes: ByteArray): File = createTempFile(ByteArrayInputStream(bytes))
+internal fun createTempFile(bytes: ByteArray): File? =
+    bytes.takeIf { it.isNotEmpty() }?.let { createTempFile(ByteArrayInputStream(it)) }
 
-internal fun createTempFile(inputStream: InputStream): File = inputStream.use {
+internal fun createTempFile(inputStream: InputStream): File? = inputStream.takeIf { it.available() > 0 }?.use {
     val outputTempFilePath = "$tempDirectory/$randomName"
     Files.copy(it, Paths.get(outputTempFilePath))
 

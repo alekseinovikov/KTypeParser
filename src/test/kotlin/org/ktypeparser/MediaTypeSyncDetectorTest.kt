@@ -2,7 +2,9 @@ package org.ktypeparser
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import org.ktypeparser.type.MediaSuperType
 import org.ktypeparser.type.MediaType
+import java.io.ByteArrayInputStream
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -16,6 +18,7 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = detect(pdfFile)
 
         Assertions.assertEquals(MediaType.PDF, mediaType)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaType?.superType)
     }
 
     @Test
@@ -26,6 +29,7 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = detect(bytes)
 
         Assertions.assertEquals(MediaType.PDF, mediaType)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaType?.superType)
     }
 
     @Test
@@ -35,6 +39,7 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = detect(pdfFile.inputStream())
 
         Assertions.assertEquals(MediaType.PDF, mediaType)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaType?.superType)
     }
 
     @Test
@@ -44,6 +49,7 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = detect(jpgFile)
 
         Assertions.assertEquals(MediaType.JPEG, mediaType)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaType?.superType)
     }
 
     @Test
@@ -54,6 +60,7 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = detect(bytes)
 
         Assertions.assertEquals(MediaType.JPEG, mediaType)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaType?.superType)
     }
 
     @Test
@@ -63,6 +70,25 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = detect(jpgFile.inputStream())
 
         Assertions.assertEquals(MediaType.JPEG, mediaType)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaType?.superType)
+    }
+
+    @Test
+    fun detect_emptyFileByteArray_null() {
+        val bytes = ByteArray(0)
+
+        val mediaType = detect(bytes)
+
+        Assertions.assertNull(mediaType)
+    }
+
+    @Test
+    fun detect_emptyFileInputStream_null() {
+        val inputStream = ByteArrayInputStream(ByteArray(0))
+
+        val mediaType = detect(inputStream)
+
+        Assertions.assertNull(mediaType)
     }
 
     @Test
@@ -72,6 +98,7 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = pdfFile.detectMediaType()
 
         Assertions.assertEquals(MediaType.PDF, mediaType)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaType?.superType)
     }
 
     @Test
@@ -82,6 +109,7 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = bytes.detectMediaType()
 
         Assertions.assertEquals(MediaType.PDF, mediaType)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaType?.superType)
     }
 
     @Test
@@ -91,6 +119,7 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = pdfFile.inputStream().detectMediaType()
 
         Assertions.assertEquals(MediaType.PDF, mediaType)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaType?.superType)
     }
 
     @Test
@@ -100,6 +129,7 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = jpgFile.detectMediaType()
 
         Assertions.assertEquals(MediaType.JPEG, mediaType)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaType?.superType)
     }
 
     @Test
@@ -110,6 +140,7 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = bytes.detectMediaType()
 
         Assertions.assertEquals(MediaType.JPEG, mediaType)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaType?.superType)
     }
 
     @Test
@@ -119,6 +150,25 @@ internal class MediaTypeSyncDetectorTest {
         val mediaType = jpgFile.inputStream().detectMediaType()
 
         Assertions.assertEquals(MediaType.JPEG, mediaType)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaType?.superType)
+    }
+
+    @Test
+    fun extension_detect_emptyFileByteArray_null() {
+        val bytes = ByteArray(0)
+
+        val mediaType = bytes.detectMediaType()
+
+        Assertions.assertNull(mediaType)
+    }
+
+    @Test
+    fun extension_detect_emptyFileInputStream_null() {
+        val inputStream = ByteArrayInputStream(ByteArray(0))
+
+        val mediaType = inputStream.detectMediaType()
+
+        Assertions.assertNull(mediaType)
     }
 
     private fun getFileFromResources(path: String): File = File(javaClass.classLoader.getResource(path)!!.file)
