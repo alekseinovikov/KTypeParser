@@ -3,6 +3,7 @@ package org.ktypeparser
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import org.ktypeparser.type.MediaSuperType
 import org.ktypeparser.type.MediaType
 import java.io.ByteArrayInputStream
 import java.io.File
@@ -17,7 +18,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = detectAsync(pdfFile)
 
-        Assertions.assertEquals(MediaType.PDF, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.PDF, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaTypeResult?.superType)
     }
 
     @Test
@@ -27,7 +30,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = detectAsync(bytes)
 
-        Assertions.assertEquals(MediaType.PDF, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.PDF, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaTypeResult?.superType)
     }
 
     @Test
@@ -36,7 +41,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = detectAsync(pdfFile.inputStream())
 
-        Assertions.assertEquals(MediaType.PDF, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.PDF, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaTypeResult?.superType)
     }
 
     @Test
@@ -45,7 +52,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = detectAsync(jpgFile)
 
-        Assertions.assertEquals(MediaType.JPEG, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.JPEG, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaTypeResult?.superType)
     }
 
     @Test
@@ -55,7 +64,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = detectAsync(bytes)
 
-        Assertions.assertEquals(MediaType.JPEG, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.JPEG, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaTypeResult?.superType)
     }
 
     @Test
@@ -64,7 +75,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = detectAsync(jpgFile.inputStream())
 
-        Assertions.assertEquals(MediaType.JPEG, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.JPEG, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaTypeResult?.superType)
     }
 
     @Test
@@ -91,7 +104,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = pdfFile.detectMediaTypeAsync()
 
-        Assertions.assertEquals(MediaType.PDF, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.PDF, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaTypeResult?.superType)
     }
 
     @Test
@@ -101,7 +116,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = bytes.detectMediaTypeAsync()
 
-        Assertions.assertEquals(MediaType.PDF, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.PDF, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaTypeResult?.superType)
     }
 
     @Test
@@ -110,7 +127,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = pdfFile.inputStream().detectMediaTypeAsync()
 
-        Assertions.assertEquals(MediaType.PDF, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.PDF, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.APPLICATION, mediaTypeResult?.superType)
     }
 
     @Test
@@ -119,7 +138,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = jpgFile.detectMediaTypeAsync()
 
-        Assertions.assertEquals(MediaType.JPEG, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.JPEG, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaTypeResult?.superType)
     }
 
     @Test
@@ -129,7 +150,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = bytes.detectMediaTypeAsync()
 
-        Assertions.assertEquals(MediaType.JPEG, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.JPEG, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaTypeResult?.superType)
     }
 
     @Test
@@ -138,7 +161,9 @@ internal class MediaTypeAsyncDetectorTest {
 
         val mediaType = jpgFile.inputStream().detectMediaTypeAsync()
 
-        Assertions.assertEquals(MediaType.JPEG, mediaType.await())
+        val mediaTypeResult = mediaType.await()
+        Assertions.assertEquals(MediaType.JPEG, mediaTypeResult)
+        Assertions.assertEquals(MediaSuperType.IMAGE, mediaTypeResult?.superType)
     }
 
     @Test
